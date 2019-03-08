@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>Small Teams,Big Dreams</title>
+ <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <style type="text/css">
+    body {
+      font: 10pt sans;
+    }
+    #mynetwork {
+      width: 100%;
+      height: 100vh;
+      border: 1px solid lightgray;
+    }
+  </style>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+    var network = null;
+    var layoutMethod = "directed";
+
+    var graph ={nodes:[{id:0,group:'Mission Learning',label:"Content Tech + QA",url:'https://sites.google.com/embibe.com/contenttechqa',shape:'box'},{id:1,group:'Mission Learning',label:"Content Hygiene / Launch Automation",url:'https://sites.google.com/embibe.com/contenthygiene',shape:'box'},{id:2,group:'Mission Learning',label:"Content Ingestion",url:'https://sites.google.com/embibe.com/contentingestion',shape:'box'},{id:3,group:'Mission Learning',label:"Smart Tagging",url:'https://sites.google.com/embibe.com/smarttagging',shape:'box'},{id:4,group:'Mission Learning',label:"Content Generation",url:'https://sites.google.com/embibe.com/contentgeneration',shape:'box'},{id:5,group:'Mission Learning',label:"Knowledge Graph",url:'https://sites.google.com/embibe.com/knowledgegraph',shape:'box'},{id:6,group:'Mission Learning',label:"Translation",url:'https://sites.google.com/embibe.com/translation',shape:'box'},{id:7,group:'Mission Learning',label:"Content Packaging",url:'https://sites.google.com/embibe.com/contentpackaging',shape:'box'},{id:8,group:'Mission Learning',label:"Media Creation Team",url:'https://sites.google.com/embibe.com/mediacreation',shape:'box'},{id:9,group:'Mission Learning',label:"Content Sourcing & Partnerships",url:'https://sites.google.com/embibe.com/contentsourcing',shape:'box'},{id:10,group:'Mission Learning',label:"Pre-UG",url:'https://sites.google.com/embibe.com/academiclaunchespreug/vision',shape:'box'},{id:11,group:'Mission Learning',label:"Pre-PG",url:'https://sites.google.com/embibe.com/academiclaunchesprepg/vision',shape:'box'},{id:12,group:'Mission Learning',label:"K12",url:'https://sites.google.com/embibe.com/academiclaunchesk12/vision',shape:'box'},{id:13,group:'Mission IP',label:"DevOps",url:'https://sites.google.com/embibe.com/devops',shape:'box'},{id:14,group:'Mission IP',label:"Data Engineering Platform",url:'https://sites.google.com/embibe.com/dataengineeringplatform/vision',shape:'box'},{id:15,group:'Foundation',label:"Business Finance, Planning & Analysis - Inv reporting, comp analysis and Accounting",url:'https://sites.google.com/embibe.com/businessfinance',shape:'box'},{id:16,group:'Foundation',label:"Talent Management - Onboarding, Performance Management, Engagement",url:'https://sites.google.com/embibe.com/talentmanagement',shape:'box'},{id:17,group:'Foundation',label:"Intelligent Ops",url:'https://sites.google.com/embibe.com/intelligent-operations',shape:'box'},{id:18,group:'Foundation',label:"Corporate Governance: CS, Tax",url:'https://sites.google.com/embibe.com/corporategovernance',shape:'box'},{id:19,group:'Foundation',label:"Product Certifications",url:'https://sites.google.com/embibe.com/productcertifications',shape:'box'},{id:20,group:'Foundation',label:"Legal & Contracts",url:'https://sites.google.com/embibe.com/legal-contracts',shape:'box'},{id:21,group:'Foundation',label:"Admin/ IT Support",url:'https://sites.google.com/embibe.com/embibeadmit',shape:'box'},{id:22,group:'Mission IP',label:"IP",url:'https://sites.google.com/embibe.com/productcertifications',shape:'box'},{id:23,group:'Mission IP',label:"Data Sciences Platform",url:'https://sites.google.com/embibe.com/datasciences',shape:'box'},{id:24,group:'Mission Learning',label:"Search",url:'https://sites.google.com/embibe.com/search',shape:'box'},{id:25,group:'Mission Learning',label:"Learn",url:'https://sites.google.com/embibe.com/learn',shape:'box'},{id:26,group:'Mission Learning',label:"Practice",url:'https://sites.google.com/embibe.com/practice',shape:'box'},{id:27,group:'Mission Learning',label:"Consumer Mobile + QA (For Search, Practice, Test)",url:'https://sites.google.com/embibe.com/consumermobileqa',shape:'box'},{id:28,group:'Mission Learning',label:"Accessibility",url:'https://sites.google.com/embibe.com/accessibility',shape:'box'},{id:29,group:'Mission Learning',label:"Devices",url:'https://sites.google.com/embibe.com/devices',shape:'box'},{id:30,group:'Mission Learning',label:"Learning Outcomes",url:'https://sites.google.com/embibe.com/learningoutcomes',shape:'box'},{id:31,group:'Mission Learning',label:"Growth hack & product profiling",url:'https://sites.google.com/embibe.com/growthhackproductprofiling',shape:'box'},{id:32,group:'Mission Learning',label:"User profiling & social graph",url:'https://sites.google.com/embibe.com/userprofilingsocialgraph',shape:'box'},{id:33,group:'Mission Learning',label:"Embibe guide",url:'https://sites.google.com/embibe.com/embibesec',shape:'box'},{id:34,group:'Mission Learning',label:"Security and privacy",url:'https://sites.google.com/embibe.com/embibeguide',shape:'box'},{id:35,group:'Mission PAAS',label:"PAAS Product + Tech + QA + Support",url:'https://sites.google.com/embibe.com/paasproducttechqa',shape:'box'},{id:36,group:'Mission PAAS',label:"PAAS Mobile + QA",url:'https://sites.google.com/embibe.com/paasmobileqa/vision',shape:'box'},{id:37,group:'Mission PAAS',label:"PAAS B2B",url:'https://sites.google.com/embibe.com/paasb2b',shape:'box'},{id:38,group:'Mission PAAS',label:"PAAS B2G",url:'https://sites.google.com/embibe.com/paasb2g',shape:'box'},{id:39,group:'Mission PAAS',label:"NGO Platform (Embibe.Org)",url:'https://sites.google.com/embibe.com/paasfoundation',shape:'box'},{id:40,group:'Mission PAAS',label:"PAAS Delivery & Support - Content",url:'https://sites.google.com/embibe.com/paasdeliverycontent',shape:'box'},{id:41,group:'Mission PAAS',label:"PAAS B2B Delivery",url:'https://sites.google.com/embibe.com/paas-b2b-delivery',shape:'box'},{id:42,group:'Mission PAAS',label:"PAAS Marketing: SEO + ASO + BTL",url:'https://sites.google.com/embibe.com/paasmarketing',shape:'box'},{id:43,group:'Mission PAAS',label:"Big Data Mining (Emphasis on PAAS)",url:'https://sites.google.com/embibe.com/bigdatamining',shape:'box'},{id:44,group:'Mission PAAS',label:"Education Report Design + Delivery",url:'https://sites.google.com/embibe.com/paasreport',shape:'box'},{id:45,group:'Mission PAAS',label:"PAAS Ambassadors",url:'https://sites.google.com/embibe.com/academicpaasambassadors',shape:'box'},{id:46,group:'Mission Learning',label:"Test",url:'https://sites.google.com/embibe.com/test',shape:'box'},{id:47,group:'Mission PAAS',label:"Intelligent Consumer Support",url:'https://sites.google.com/embibe.com/consumersup',shape:'box'},{id:48,group:'Mission PAAS',label:"Exam Category - Pre-PG",url:'https://sites.google.com/embibe.com/prepg',shape:'box'},{id:49,group:'Mission PAAS',label:"Exam Category - Pre-UG",url:'https://sites.google.com/embibe.com/preug',shape:'box'},{id:50,group:'Mission PAAS',label:"Exam Category - K12",url:'https://sites.google.com/embibe.com/k12',shape:'box'},{id:51,group:'Mission Traffic',label:"Traffic",url:'https://sites.google.com/embibe.com/traffic',shape:'box'},{id:52,group:'Mission Traffic',label:"Traffic Tech/ Blog + QA",url:'https://sites.google.com/embibe.com/traffictech',shape:'box'},{id:53,group:'Mission PAAS and Traffic',label:"Brand Marketing & User research",url:'https://sites.google.com/embibe.com/brandmarketing',shape:'box'}],edges:[{from:0,to:2},{from:0,to:3},{from:0,to:4},{from:0,to:5},{from:0,to:6},{from:0,to:1},{from:1,to:2},{from:1,to:4},{from:1,to:10},{from:1,to:11},{from:1,to:12},{from:5,to:10},{from:5,to:11},{from:5,to:12},{from:6,to:4},{from:6,to:10},{from:6,to:11},{from:6,to:12},{from:2,to:8},{from:2,to:10},{from:2,to:11},{from:2,to:12},{from:3,to:4},{from:3,to:5},{from:3,to:7},{from:3,to:10},{from:3,to:11},{from:3,to:12},{from:4,to:10},{from:4,to:11},{from:4,to:12},{from:7,to:4},{from:7,to:10},{from:7,to:11},{from:7,to:12},{from:8,to:9},{from:13,to:0},{from:13,to:1},{from:14,to:0},{from:14,to:1},{from:14,to:13},{from:18,to:19},{from:22,to:3},{from:22,to:5},{from:22,to:8},{from:22,to:23},{from:24,to:25},{from:24,to:26},{from:24,to:27},{from:24,to:28},{from:24,to:29},{from:35,to:36},{from:35,to:37},{from:35,to:38},{from:35,to:39},{from:35,to:40},{from:35,to:41},{from:35,to:42},{from:35,to:43},{from:35,to:44},{from:35,to:45},{from:48,to:2},{from:49,to:2},{from:50,to:2},{from:48,to:51},{from:49,to:51},{from:50,to:51},{from:52,to:51},{from:53,to:48},{from:53,to:49},{from:53,to:50},{from:22,to:23},{from:24,to:25},{from:24,to:26},{from:24,to:27},{from:24,to:28},{from:24,to:29}]};
+    function destroy() {
+      if (network !== null) {
+        network.destroy();
+        network = null;
+      }
+    }
+
+    function draw() {
+      destroy();
+
+      var nodes = graph.nodes;
+      var edges = graph.edges;
+      // randomly create some nodes and edges
+
+      // create a network
+      var container = document.getElementById('mynetwork');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+
+      var options = {
+        edges:{
+               color:{color:'white'},
+               width: 2,
+               arrows: {
+                        to: {enabled: true, scaleFactor:.5, type:'arrow'}
+               }
+
+        },
+        nodes: {
+          borderWidth:2,
+          size:50,
+          color: {
+           border: '#222222',
+           background: 'grey'
+          },
+          font:{color:'black',
+           size: 40,
+           face :'arial',
+          },
+          margin: {
+           top: 20,
+           bottom: 20,
+           left: 20,
+           right: 20
+          }
+        },
+        physics: {
+          forceAtlas2Based: {
+              gravitationalConstant: -350,
+              centralGravity: 0.05,
+              springLength: 400,
+              springConstant: 0.01,
+              avoidOverlap:1.5
+          },
+          maxVelocity: 20,
+          minVelocity:0,
+          solver: 'forceAtlas2Based',
+          timestep: 0.10,
+          stabilization: {enabled:true,iterations: 1000,updateInterval: 25}
+        },
+        interaction: {
+          multiselect: true,
+          dragView: true
+        }, 
+        edges: {
+          smooth: false,
+          arrows: {to : false }
+        }
+      };
+      network = new vis.Network(container, data, options);
+
+      network.on( 'click', function(properties) {
+        // var id = properties.nodes;
+        // var clickedNodes = nodes.get(id);
+        console.log(graph['nodes'], ' graph');
+        let ans = graph['nodes'].filter(node => (node['id'] == properties['nodes'][0]) );
+        console.log(ans, ' final object');
+        console.log(ans.url, ' final url');
+        window.open(ans[0]['url'], '_blank');
+        console.log('clicked nodes:', properties, '&&', properties['nodes'], '&&', network.body.nodes['0'].baseFontSize);
+
+      });
+      network.setOptions({
+            physics: {enabled:false}
+    });
+    }
+
+  </script>
+  
+</head>
+
+<body onload="draw();">
+<div style="width:100%; font-size:14px; text-align: justify;">
+
+<div id="mynetwork"></div>
+
+</body>
+</html>
